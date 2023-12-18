@@ -12,7 +12,6 @@ export function Fish12(props) {
 
   useEffect(() => {
     // Play the 'idle_fish.012' animation if it exists
-    debugger
     if (actions["idle_fish.012"]) {
       actions["idle_fish.012"].play();
     }
