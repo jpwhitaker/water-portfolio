@@ -39,8 +39,8 @@ export default function Experience() {
 
   useFrame((state, delta) => {
     
-    if (coneRef.current && sphereBoundsRef.current) {
-      console.log(coneRef.current.position, directionVectorRef.current, delta, speed)
+    if (coneRef.current && sphereBoundsRef.current.geometry.boundingSphere) {
+      
       coneRef.current.position.x += directionVectorRef.current.x * delta * speed;
       coneRef.current.position.y += directionVectorRef.current.y * delta * speed;
       coneRef.current.position.z += directionVectorRef.current.z * delta * speed;
@@ -48,10 +48,10 @@ export default function Experience() {
       // Calculate the distance between the cone and the center of the bounding sphere
       const distance = coneRef.current.position.distanceTo(sphereBoundsRef.current.position);
       // Check if the cone is within the sphere
-      if (coneRef.current && sphereBoundsRef.current.geometry.boundingSphere && (distance <= sphereBoundsRef.current.geometry.boundingSphere.radius)) {
+      if ( (distance <= sphereBoundsRef.current.geometry.boundingSphere.radius)) {
         // The cone is inside the bounding sphere
         console.log("Cone is within the sphere bounds");
-      } else if (coneRef.current && sphereBoundsRef.current.geometry.boundingSphere && (distance >= sphereBoundsRef.current.geometry.boundingSphere.radius)) {
+      } else if ( (distance >= sphereBoundsRef.current.geometry.boundingSphere.radius)) {
         console.log("outside")
         // Calculate the direction vector from the sphere's center to the cone
         let directionVector = new Vector3();
